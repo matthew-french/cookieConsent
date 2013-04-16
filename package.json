@@ -1,0 +1,16 @@
+{
+  "name": "cookieConsent",
+  "version": "0.0.1",
+  "description": "A basic cookie consent",
+  "main": "grunt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthew-french/cookieConsent.git"
+  },
+  "author": "Matthew French",
+  "license": "BSD",
+  "readmeFilename": "README.md"
+}

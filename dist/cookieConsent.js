@@ -1,8 +1,5 @@
-/**
- * @module cookieConsent
- * @author French
- * @version 1.0
- */
+/*! cookieConsent - v0.0.1 - 2013-04-16
+* Copyright (c) 2013 ; Licensed  */
 
 (function (window, document, undefined) {
 
