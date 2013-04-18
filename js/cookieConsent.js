@@ -1,52 +1,51 @@
 /**
  * @module cookieConsent
  * @author French
- * @version 1.0
+ * @version 0.0.1
  */
+(function (window, document) {
 
-(function (window, document, undefined) {
-
-    var self,
-        jQueryVersion = "1.5.0",
-        jQuerySrc = "http://ajax.googleapis.com/ajax/libs/jquery/" + jQueryVersion + "/jquery.min.js",
-
-        cookieConsentEl,
-        closeEl,
-        animateSpeed = 600;
+    var   self,
+            cookieConsentEl,
+            closeEl,
+            animateSpeed = 600;
 
     var cookieConsent = {
 
+        /**
+          * Checik for jQuery, setTimeOut until jQuery
+          */
         init: function () {
+
             self = this;
 
-            if (window.jQuery === undefined || window.fn.jquery < jQueryVersion) {
+            if (typeof window.jQuery === "undefined") {
 
-                var s = document.createElement("script");
-                s.src = jQuerySrc;
-                s.type = "text/javascript";
-                s.async = true;
-                s.onload = s.onreadystatechange = function () {
-
-                    if ((!s.readyState || s.readyState === "loaded" || s.readyState === "complete")) {
-                        // jQuery noConflict mode
-                        jQuery.noConflict();
-                        self.addConsent();
-                    }
-                };
-                document.getElementsByTagName("head")[0].appendChild(s);
-            } else {
+                // try to init every 500 ms until jQuery is loaded
+                setTimeout(function() {
+                    cookieConsent.init();
+                }, 500);
+            }
+            else {
                 self.addConsent();
             }
         },
 
+        /**
+          * Returns the innerHTML contents of a script tag
+          *  @returns {String}
+          */
         getConsentString: function() {
             var consentTmpl = document.getElementById("consent_tmpl");
             if ( typeof consentTmpl !== 'object'  ) {
-                return " ";
+                return "";
             }
             return (typeof consentTmpl.innerHTML === 'string' ) ? consentTmpl.innerHTML : " ";
         },
 
+        /**
+          * Adds the html node, animate consent node, binds close button
+          */
         addConsent: function () {
             // insert node with content string into page returning object
             var consetNode = self.createConsentNode(self.getConsentString());
@@ -64,6 +63,10 @@
             });
         },
 
+        /**
+          * Returns the innerHTML contents of a script tag
+          *  @returns {Object} jQuery Object cookieConsent
+          */
         animateConsent: function (position) {
             position = (typeof position === 'object') ? position : {
                 bottom: 0
@@ -71,6 +74,10 @@
             return cookieConsentEl.animate(position, animateSpeed);
         },
 
+        /**
+          * Returns html element  inserted into the dom
+          *  @returns {Object}
+          */
         createConsentNode: function (consentString) {
             var divNode = document.createElement('div');
             divNode.setAttribute('id', 'cnWrap');

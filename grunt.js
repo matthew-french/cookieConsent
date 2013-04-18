@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     },
     min: {
       dist: {
-        src: ['<banner:meta.banner>', 'js/*.js'],
+        src: ['<banner:meta.banner>', 'js/cookieConsent.js'],
         dest: 'js/<%= pkg.name %>.min.js'
       }
     }
