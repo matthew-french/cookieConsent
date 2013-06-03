@@ -1,22 +1,22 @@
 /**
  * @module cookieConsent
  * @author French
- * @version 0.0.1
+ * @version 0.0.2
  */
-(function (window, document) {
+var cookieConsent = (function (window, document) {
 
     var   self,
             cookieConsentEl,
             closeEl,
             animateSpeed = 600;
 
-    var cookieConsent = {
+    return {
 
         /**
           * Checik for jQuery, setTimeOut until jQuery
           */
         init: function () {
-
+            console.log('ok');
             self = this;
 
             if (typeof window.jQuery === "undefined") {
@@ -40,7 +40,7 @@
             if ( typeof consentTmpl !== 'object'  ) {
                 return "";
             }
-            return (typeof consentTmpl.innerHTML === 'string' ) ? consentTmpl.innerHTML : " ";
+            return (typeof consentTmpl.innerHTML === 'string' ) ? consentTmpl.innerHTML : "<p>Sorry there has been a problem<\/p>";
         },
 
         /**
@@ -79,10 +79,12 @@
           *  @returns {Object}
           */
         createConsentNode: function (consentString) {
-            var divNode = document.createElement('div');
+            var   consent,
+                    divNode = document.createElement('div');
+
             divNode.setAttribute('id', 'cnWrap');
 
-            var consent = "<div id='cookieNotice' style='position:fixed;bottom:-300px;left:0px;width:100%;height:auto;background:#000000;opacity:.80; -ms-filter: â€œalpha(opacity=80)â€; filter: alpha(opacity=80);-khtml-opacity: .80; -moz-opacity: .80; color:#FFFFFF;font-family:arial;font-size:14px;text-align:center;z-index:9999;'>";
+            consent = "<div id='cookieNotice' style='position:fixed;bottom:-300px;left:0px;width:100%;height:auto;background:#000000;opacity:.80; -ms-filter: â€œalpha(opacity=80)â€; filter: alpha(opacity=80);-khtml-opacity: .80; -moz-opacity: .80; color:#FFFFFF;font-family:arial;font-size:14px;text-align:center;z-index:9999;'>";
             consent += "<div  style='position:relative;height:auto;width:75%;padding:15px;margin-left:auto;margin-right:auto;'>";
             consent += consentString;
             consent += "<div style='position:absolute;top:0px;right:-30px;height:30px;width:50px;'' id='close'>close</div>";
@@ -95,6 +97,7 @@
 
     };
 
-    cookieConsent.init();
-
 })(window, document);
+
+cookieConsent.init();
+
