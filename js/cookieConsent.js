@@ -26,6 +26,7 @@ var cookieConsent = (function (window, document) {
 
             }
             else {
+                self.appendStyles();
                 self.addConsent();
             }
         },
@@ -90,14 +91,37 @@ var cookieConsent = (function (window, document) {
             divNode.innerHTML = consent;
 
             return document.body.appendChild(divNode);
-        }
+        },
 
+        /**
+          * Return style node inserted into the dom
+          *  @returns {Object}
+          */
+        appendStyles: function () {
+            var styles,
+            css = document.createElement('style');
+
+            css.type = 'text/css';
+
+            styles = "#cookie-consent-tm {position: fixed !important;bottom: -300px;border-top-left-radius: 0.5em !important;border-top-right-radius: 0.5em !important;left: 10% !important;width: 80% !important;color: rgb(255, 255, 255) !important;background-color: rgb(0, 0, 0) !important;margin: 0px;z-index: 99999;background-position: initial initial !important;background-repeat: initial initial !important;}";
+            styles += " #cookie-consent-tm-info {float:left !important;margin:15px 15px !important;width:55px !important;height:55px !important;}";
+            styles += " #cookie-consent-tm-close {float:right !important;cursor:pointer !important;margin: 8px 15px 7px 15px !important;opacity:0.75 !important;width:18px !important;height:18px !important;}";
+            styles += " #cookie-consent-tm-content {margin:15px 35px 15px 100px !important;text-align:left !important;font:12pt Arial !important;}";
+            styles += " #cookie-consent-tm-content a {color: #FFDE00;text-decoration: none;}";
+            styles += " #cookie-consent-tm-content a:hover {color: #9d9d9c;}";
+
+            if (css.styleSheet) {
+                css.styleSheet.cssText = styles;
+            }
+            else {
+                css.appendChild(document.createTextNode(styles));
+            };
+
+            return document.getElementsByTagName("head")[0].appendChild(css);
+
+        }
     };
 
 })(window, document);
 
-$(document).ready(function() {
-        window.cookieConsent.init();
-});
-
-
+window.onload = function() { cookieConsent.init() };
