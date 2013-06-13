@@ -16,15 +16,14 @@ var cookieConsent = (function (window, document) {
           * Checik for jQuery, setTimeOut until jQuery
           */
         init: function () {
-            console.log('ok');
             self = this;
 
             if (typeof window.jQuery === "undefined") {
-
                 // try to init every 500 ms until jQuery is loaded
                 setTimeout(function() {
                     cookieConsent.init();
                 }, 500);
+
             }
             else {
                 self.addConsent();
@@ -40,7 +39,7 @@ var cookieConsent = (function (window, document) {
             if ( typeof consentTmpl !== 'object'  ) {
                 return "";
             }
-            return (typeof consentTmpl.innerHTML === 'string' ) ? consentTmpl.innerHTML : "<p>Sorry there has been a problem<\/p>";
+            return (typeof consentTmpl.innerHTML === 'string' ) ? consentTmpl.innerHTML : "<p>Sorry there has been a problem.<\/p>";
         },
 
         /**
@@ -48,15 +47,15 @@ var cookieConsent = (function (window, document) {
           */
         addConsent: function () {
             // insert node with content string into page returning object
-            var consetNode = self.createConsentNode(self.getConsentString());
+            var consentNode = self.createConsentNode(self.getConsentString());
 
-            cookieConsentEl = jQuery("#cookieNotice", consetNode);
+            cookieConsentEl = jQuery(consentNode);
 
             self.animateConsent({
                 bottom: 0
             });
 
-            jQuery("#close", consetNode).click( function () {
+            jQuery('#cookie-consent-tm-close', cookieConsentEl).click( function () {
                 self.animateConsent({
                     bottom: -300
                 });
@@ -68,9 +67,7 @@ var cookieConsent = (function (window, document) {
           *  @returns {Object} jQuery Object cookieConsent
           */
         animateConsent: function (position) {
-            position = (typeof position === 'object') ? position : {
-                bottom: 0
-            };
+            position = (typeof position === 'object') ? position : { bottom: 0 };
             return cookieConsentEl.animate(position, animateSpeed);
         },
 
@@ -82,13 +79,13 @@ var cookieConsent = (function (window, document) {
             var   consent,
                     divNode = document.createElement('div');
 
-            divNode.setAttribute('id', 'cnWrap');
+            divNode.setAttribute('id', 'cookie-consent-tm');
 
-            consent = "<div id='cookieNotice' style='position:fixed;bottom:-300px;left:0px;width:100%;height:auto;background:#000000;opacity:.80; -ms-filter: â€œalpha(opacity=80)â€; filter: alpha(opacity=80);-khtml-opacity: .80; -moz-opacity: .80; color:#FFFFFF;font-family:arial;font-size:14px;text-align:center;z-index:9999;'>";
-            consent += "<div  style='position:relative;height:auto;width:75%;padding:15px;margin-left:auto;margin-right:auto;'>";
+            consent = "<img alt='info' id='cookie-consent-tm-info' src='img/cookie_info.png'>";
+            consent += "<img alt='close' id='cookie-consent-tm-close' src='img/cookie_close.png'>";
+            consent += "<div id='cookie-consent-tm-content'>";
             consent += consentString;
-            consent += "<div style='position:absolute;top:0px;right:-30px;height:30px;width:50px;'' id='close'>close</div>";
-            consent += "</div></div></div>";
+            consent += "</div>";
 
             divNode.innerHTML = consent;
 
@@ -99,5 +96,8 @@ var cookieConsent = (function (window, document) {
 
 })(window, document);
 
-cookieConsent.init();
+$(document).ready(function() {
+        window.cookieConsent.init();
+});
+
 
