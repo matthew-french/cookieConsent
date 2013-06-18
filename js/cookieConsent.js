@@ -82,8 +82,8 @@ var cookieConsent = (function (window, document) {
 
             divNode.setAttribute('id', 'cookie-consent-tm');
 
-            consent = "<img alt='info' id='cookie-consent-tm-info' src='img/cookie_info.png'>";
-            consent += "<img alt='close' id='cookie-consent-tm-close' src='img/cookie_close.png'>";
+            consent = "<img alt='info' id='cookie-consent-tm-info' src='http://creatives.as4x.tmcs.net/europe/UK/Cookie_Info.png'>";
+            consent += "<img alt='close' id='cookie-consent-tm-close' src='http://creatives.as4x.tmcs.net/europe/UK/Cookie_close.png'>";
             consent += "<div id='cookie-consent-tm-content'>";
             consent += consentString;
             consent += "</div>";
