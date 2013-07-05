@@ -5,10 +5,10 @@
  */
 var cookieConsent = (function (window, document) {
 
-    var   self,
-            cookieConsentEl,
-            closeEl,
-            animateSpeed = 600;
+    var self,
+        cookieConsentEl,
+        closeEl,
+        animateSpeed = 600;
 
     return {
 
@@ -23,7 +23,6 @@ var cookieConsent = (function (window, document) {
                 setTimeout(function() {
                     cookieConsent.init();
                 }, 500);
-
             }
             else {
                 self.appendStyles();
@@ -37,10 +36,12 @@ var cookieConsent = (function (window, document) {
           */
         getConsentString: function() {
             var consentTmpl = document.getElementById("consent_tmpl");
-            if ( typeof consentTmpl !== 'object'  ) {
+
+            if ( typeof consentTmpl !== "object"  ) {
                 return "";
             }
-            return (typeof consentTmpl.innerHTML === 'string' ) ? consentTmpl.innerHTML : "<p>Sorry there has been a problem.<\/p>";
+
+            return ( typeof consentTmpl.innerHTML === "string" ) ? consentTmpl.innerHTML : "<p>Sorry there has been a problem.<\/p>";
         },
 
         /**
@@ -77,8 +78,8 @@ var cookieConsent = (function (window, document) {
           *  @returns {Object}
           */
         createConsentNode: function (consentString) {
-            var   consent,
-                    divNode = document.createElement('div');
+            var consent,
+                divNode = document.createElement('div');
 
             divNode.setAttribute('id', 'cookie-consent-tm');
 
@@ -99,7 +100,7 @@ var cookieConsent = (function (window, document) {
           */
         appendStyles: function () {
             var styles,
-            css = document.createElement('style');
+                css = document.createElement('style');
 
             css.type = 'text/css';
 
@@ -115,7 +116,7 @@ var cookieConsent = (function (window, document) {
             }
             else {
                 css.appendChild(document.createTextNode(styles));
-            };
+            }
 
             return document.getElementsByTagName("head")[0].appendChild(css);
 
@@ -124,4 +125,6 @@ var cookieConsent = (function (window, document) {
 
 })(window, document);
 
-window.onload = function() { cookieConsent.init() };
+window.onload = function() {
+    cookieConsent.init();
+};
