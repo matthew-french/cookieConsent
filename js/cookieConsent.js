@@ -3,7 +3,7 @@
  * @author French
  * @version 0.0.2
  */
-;var cookieConsent = (function (window, document, jQuery) {
+;var cookieConsent = (function (window, document) {
 
     var self,
         cookieConsentEl,
@@ -120,7 +120,7 @@
         }
     };
 
-})(window, document,jQuery);
+})(window, document);
 
 window.onload = function() {
     cookieConsent.init();
