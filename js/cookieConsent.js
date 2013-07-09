@@ -57,7 +57,7 @@
 
             jQuery('#cookie-consent-tm-close', cookieConsentEl).click( function () {
                 self.animateConsent({
-                    bottom: -300
+                    bottom: -500
                 });
             });
         },
@@ -79,11 +79,11 @@
             var consent,
                 divNode = document.createElement('div');
 
-            divNode.setAttribute('id', 'cookie-consent-tm');
+            divNode.setAttribute('id', 'cookie_consent_tm');
 
-            consent = "<img alt='info' id='cookie-consent-tm-info' src='http://creatives.as4x.tmcs.net/europe/UK/Cookie_Info.png'>";
-            consent += "<img alt='close' id='cookie-consent-tm-close' src='http://creatives.as4x.tmcs.net/europe/UK/Cookie_close.png'>";
-            consent += "<div id='cookie-consent-tm-content'>";
+            consent = "<img alt='info' id='cookie_consent_tm_info' src='http://creatives.as4x.tmcs.net/europe/UK/Cookie_Info.png'>";
+            consent += "<img alt='close' id='cookie_consent_tm_close' src='http://creatives.as4x.tmcs.net/europe/UK/Cookie_close.png'>";
+            consent += "<div id='cookie_consent_tm_content'>";
             consent += consentString;
             consent += "</div>";
 
@@ -102,12 +102,12 @@
 
             css.type = 'text/css';
 
-            styles = "#cookie-consent-tm {position: fixed !important;bottom: -300px;border-top-left-radius: 0.5em !important;border-top-right-radius: 0.5em !important;left: 10% !important;width: 80% !important;color: rgb(255, 255, 255) !important;background-color: rgb(0, 0, 0) !important;margin: 0px;z-index: 99999;background-position: initial initial !important;background-repeat: initial initial !important;}";
-            styles += " #cookie-consent-tm-info {float:left !important;margin:15px 15px !important;width:55px !important;height:55px !important;}";
-            styles += " #cookie-consent-tm-close {float:right !important;cursor:pointer !important;margin: 8px 15px 7px 15px !important;opacity:0.75 !important;width:18px !important;height:18px !important;}";
-            styles += " #cookie-consent-tm-content {margin:15px 35px 15px 100px !important;text-align:left !important;font:12pt Arial !important;}";
-            styles += " #cookie-consent-tm-content a {color: #FFDE00;text-decoration: none;}";
-            styles += " #cookie-consent-tm-content a:hover {color: #9d9d9c;}";
+            styles = "#cookie_consent_tm {position: fixed !important;bottom: -500px;border-top-left-radius: 0.5em !important;border-top-right-radius: 0.5em !important;left: 10% !important;width: 80% !important;color: rgb(255, 255, 255) !important;background-color: rgb(0, 0, 0) !important;margin: 0px;z-index: 99999;background-position: initial initial !important;background-repeat: initial initial !important;}";
+            styles += " #cookie_consent_tm_info {float:left !important;margin:15px 15px !important;width:55px !important;height:55px !important;}";
+            styles += " #cookie_consent_tm_close {float:right !important;cursor:pointer !important;margin: 8px 15px 7px 15px !important;opacity:0.75 !important;width:18px !important;height:18px !important;}";
+            styles += " #cookie_consent_tm_content {margin:15px 35px 15px 100px !important;text-align:left !important;font:12pt Arial !important;}";
+            styles += " #cookie_consent_tm_content a {color: #FFDE00;text-decoration: none;}";
+            styles += " #cookie_consent_tm_content a:hover {color: #9d9d9c;}";
 
             if (css.styleSheet) {
                 css.styleSheet.cssText = styles;
