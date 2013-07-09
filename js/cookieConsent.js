@@ -3,7 +3,7 @@
  * @author French
  * @version 0.0.2
  */
-var cookieConsent = (function (window, document) {
+;var cookieConsent = (function (window, document, jQuery) {
 
     var self,
         cookieConsentEl,
@@ -11,10 +11,9 @@ var cookieConsent = (function (window, document) {
         animateSpeed = 600;
 
     return {
-
         /**
-          * Checik for jQuery, setTimeOut until jQuery
-          */
+        * Checik for jQuery, setTimeOut until jQuery
+        */
         init: function () {
             self = this;
 
@@ -31,9 +30,9 @@ var cookieConsent = (function (window, document) {
         },
 
         /**
-          * Returns the innerHTML contents of a script tag
-          *  @returns {String}
-          */
+        * Returns the innerHTML contents of a script tag
+        *  @returns {String}
+        */
         getConsentString: function() {
             var consentTmpl = document.getElementById("consent_tmpl");
 
@@ -45,10 +44,9 @@ var cookieConsent = (function (window, document) {
         },
 
         /**
-          * Adds the html node, animate consent node, binds close button
-          */
+        * Adds the html node, animate consent node, binds close button
+        */
         addConsent: function () {
-            // insert node with content string into page returning object
             var consentNode = self.createConsentNode(self.getConsentString());
 
             cookieConsentEl = jQuery(consentNode);
@@ -65,18 +63,18 @@ var cookieConsent = (function (window, document) {
         },
 
         /**
-          * Returns the innerHTML contents of a script tag
-          *  @returns {Object} jQuery Object cookieConsent
-          */
+        * Returns the innerHTML contents of a script tag
+        *  @returns {Object} jQuery Object cookieConsent
+        */
         animateConsent: function (position) {
             position = (typeof position === 'object') ? position : { bottom: 0 };
             return cookieConsentEl.animate(position, animateSpeed);
         },
 
         /**
-          * Returns html element  inserted into the dom
-          *  @returns {Object}
-          */
+        * Returns html element  inserted into the dom
+        *  @returns {Object}
+        */
         createConsentNode: function (consentString) {
             var consent,
                 divNode = document.createElement('div');
@@ -95,9 +93,9 @@ var cookieConsent = (function (window, document) {
         },
 
         /**
-          * Return style node inserted into the dom
-          *  @returns {Object}
-          */
+        * Return style node inserted into the dom
+        *  @returns {Object}
+        */
         appendStyles: function () {
             var styles,
                 css = document.createElement('style');
@@ -119,11 +117,10 @@ var cookieConsent = (function (window, document) {
             }
 
             return document.getElementsByTagName("head")[0].appendChild(css);
-
         }
     };
 
-})(window, document);
+})(window, document,jQuery);
 
 window.onload = function() {
     cookieConsent.init();
